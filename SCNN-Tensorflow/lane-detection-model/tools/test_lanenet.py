@@ -20,6 +20,8 @@ try:
 except ImportError:
     pass
 
+import sys
+sys.path.insert(0,'/content/Codes-for-Lane-Detection/SCNN-Tensorflow/lane-detection-model')
 from lanenet_model import lanenet_merge_model
 from config import global_config
 from data_provider import lanenet_data_processor_test
@@ -104,6 +106,10 @@ def test_lanenet(image_path, weights_path, use_gpu, image_list, batch_size, save
 if __name__ == '__main__':
     # init args
     args = init_args()
+
+    args.weights_path = "/home/fanerror/cvml-kit/third_party/Codes-for-Lane-Detection/SCNN-Tensorflow/lane-detection-model/data/model_culane-71-3/culane_lanenet_vgg_2018-12-01-14-38-37.ckpt-10000"
+    args.image_path = "/home/fanerror/cvml-kit/third_party/Codes-for-Lane-Detection/SCNN-Tensorflow/lane-detection-model/demo_file/test_img_my.txt"
+    args.save_dir = "/home/fanerror/cvml-kit/third_party/Codes-for-Lane-Detection/SCNN-Tensorflow/lane-detection-model/data"
 
     if args.save_dir is not None and not ops.exists(args.save_dir):
         log.error('{:s} not exist and has been made'.format(args.save_dir))
